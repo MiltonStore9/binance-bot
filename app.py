@@ -9,7 +9,7 @@ def home():
 
 @app.route("/btc")
 def btc():
-    url = "https://data.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+    url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
     r = requests.get(url, timeout=5)
 
     if r.status_code != 200:
@@ -23,4 +23,5 @@ def btc():
 
 if __name__ == "__main__":
     app.run()
+
 
