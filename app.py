@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Bot Binance activo 🚀"
+    return "Bot Binance f activo 🚀"
 
 @app.route("/btc")
 def btc():
@@ -23,5 +23,6 @@ def btc():
 
 if __name__ == "__main__":
     app.run()
+
 
 
