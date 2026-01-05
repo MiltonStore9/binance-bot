@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 import requests
 
 app = Flask(__name__)
@@ -7,13 +7,11 @@ app = Flask(__name__)
 def home():
     return "Bot Binance activo 🚀"
 
-@app.route("/price")
-def price():
-    r = requests.get(
-        "https://api.binance.com/api/v3/ticker/price",
-        params={"symbol": "BTCUSDT"}
-    )
-    return jsonify(r.json())
+@app.route("/btc")
+def btc():
+    url = "https://data.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
+    data = requests.get(url).json()
+    return f"BTCUSDT: {data['price']}"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run()
