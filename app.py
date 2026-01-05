@@ -10,8 +10,17 @@ def home():
 @app.route("/btc")
 def btc():
     url = "https://data.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-    data = requests.get(url).json()
-    return f"BTCUSDT: {data['price']}"
+    r = requests.get(url, timeout=5)
+
+    if r.status_code != 200:
+        return f"Error Binance: status {r.status_code}"
+
+    try:
+        data = r.json()
+        return f"BTCUSDT: {data['price']}"
+    except Exception as e:
+        return "Binance no devolvió JSON válido"
 
 if __name__ == "__main__":
     app.run()
+
