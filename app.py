@@ -1,33 +1,32 @@
-from flask import Flask
-import requests
+# app.py
 
+from flask import Flask
+from binance.client import Client
+import os
+
+# Crear app Flask
 app = Flask(__name__)
 
+# Cliente Binance (solo precios públicos)
+client = Client()  # Si quieres trading, agrega api_key y api_secret
+
+# Ruta principal
 @app.route("/")
 def home():
-    return "Bot Binance f activo 🚀"
+    return "Bot Binance actighhvo 🚀"
 
+# Ruta para precio de BTC
 @app.route("/btc")
 def btc():
-    url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-    }
-    r = requests.get(url, headers=headers, timeout=5)
-
-    if r.status_code != 200:
-        return f"Error Binance: status {r.status_code}"
-
     try:
-        data = r.json()
-        return f"BTCUSDT: {data['price']}"
+        # Obtener precio BTC/USDT
+        price = client.get_symbol_ticker(symbol="BTCUSDT")
+        return f"BTCUSDT: {price['price']}"
     except Exception as e:
-        return "Binance no devolvió JSON válido"
+        return f"Error Binance: {str(e)}"
 
-
+# Ejecución
 if __name__ == "__main__":
-    app.run()
-
-
-
-
+    # Para Render: usar puerto asignado automáticamente
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
