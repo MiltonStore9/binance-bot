@@ -1,3 +1,7 @@
-Flask==2.3.3
-python-binance==2.0.0
-requests==2.31.0
+flask
+gunicorn
+pandas
+requests
+plotly
+
+
