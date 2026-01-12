@@ -602,13 +602,13 @@ def index():
     # defaults (los tuyos)
     return render_template_string(
         TPL,
-        start_local="2026-01-06 14:39",
+        start_local="2026-01-11 23:54",
         end_local=datetime.now(ZoneInfo("America/Lima")).strftime("%Y-%m-%d %H:%M"),
         symbol="BTCUSDT",
-        start_price="92091.65",
-        capital="107.06",
+        start_price="92188.95",
+        capital="106.95",
         fee_rate="0.001",
-        grids="94659, 93865.40, 93071.80, 91484.60, 90691, 89897.40, 89103.80, 88310.20, 87516.60, 86723",
+        grids="92908, 91508",
         error=None, summary=None, summary_text=None,
         plot_div=None, events_html=None, pairs_html=None
     )
@@ -716,3 +716,4 @@ if __name__ == "__main__":
     # Para que se vea desde tu celular en la misma red:
     # host="0.0.0.0" expone en tu LAN
     app.run(host="0.0.0.0", port=5000, debug=True)
+
